@@ -7,7 +7,7 @@ public class ObstacleGenerator : MonoBehaviour
     private static ObstacleGenerator instance = null;
 
     public GameObject[] obstacles;
-    public int numObstacle;
+    public int[] numObstacle;
     public Vector3 mapStartPoint;
     public Vector3 mapEndPoint;
     //List<Vector3> posList = new List<Vector3>();
@@ -28,12 +28,19 @@ public class ObstacleGenerator : MonoBehaviour
 
     private void Start()
     {
-        for(int i=0; i< numObstacle; i++)
+        GenerateObstacle(0);
+    }
+
+    //시간마다 numObstacle 
+    public void GenerateObstacle(int index) //시간마다 index 조절해서 호출하기
+    {
+        for (int i = 0; i < numObstacle[index]; i++)
         {
             int obstacle = Random.Range(0, obstacles.Length);
             Instantiate(obstacles[obstacle], GetRandomPos(), Quaternion.identity);
         }
     }
+
 
     public Vector3 GetRandomPos() //범위 내의 랜덤 위치값 반환, 위치 List에 대입
     {
