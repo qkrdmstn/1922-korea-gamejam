@@ -112,13 +112,20 @@ public class PlayerController : MonoBehaviour
         // Upper Motion Only : Upper Boat
         if (isOn)
         {
-            if(transform.position != Vector3.zero)
+            if (currState != PlayerState.IDLE)
+            {
                 StartCoroutine(DownFly());
+                rig.velocity = Vector3.zero;
+
+                FloaterGroup.SetActive(true);
+            }
 
             rig.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         }
         else
         {
+            // Fly로 이동한다면, Floater Group False
+            // Freeze 상태
             FloaterGroup.SetActive(false);
             rig.constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -137,7 +144,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             // true 바꿔주고 Freeze 걸어주기
-            FloaterGroup.SetActive(true);
             rig.constraints = RigidbodyConstraints.FreezeAll;
         }
     }

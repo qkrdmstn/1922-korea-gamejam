@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerUpperLimit : MonoBehaviour
 {
     [field: SerializeField] public float MaxY { get; private set; }
 
+    [HideInInspector] public UnityEvent onLimitEvent;
+
     private void Update()
     {
         if(transform.position.y >= MaxY)
         {
-            // »óÇÑ ¶ÕÀ¸¸ç¤¤ Á×¤·¤Å.
+            onLimitEvent?.Invoke();
         }
     }
 
