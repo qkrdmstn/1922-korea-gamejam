@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleGenerator : MonoBehaviour
+public class ObstacleGenerator : Singleton<ObstacleGenerator>
 {
-    private static ObstacleGenerator instance = null;
-
-    public GameObject[] obstacles;
+    public GameObject[] skyObstacles;
+    public GameObject[] seaObstacles;
     public int[] numObstacle;
-    public Vector3 mapStartPoint;
-    public Vector3 mapEndPoint;
+
+    public float skyUpperBound;
+    public float skyLowerBound;
+    public float seaUpperBound;
+    public float seaLowerBound = 0;
+    public float XBound;
+    public Transform tf;
+
+    Vector3 mapStartPoint;
+    Vector3 mapEndPoint;
     //List<Vector3> posList = new List<Vector3>();
-
-    private void Awake()
-    {
-        if(null == instance) //싱글톤
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -34,54 +27,39 @@ public class ObstacleGenerator : MonoBehaviour
     //시간마다 numObstacle 
     public void GenerateObstacle(int index) //시간마다 index 조절해서 호출하기
     {
-        for (int i = 0; i < numObstacle[index]; i++)
+        int numSkyObstacle = Random.Range(0, numObstacle[index]);
+        int numSeaObstacle = numObstacle[index] - numSkyObstacle;
+
+        for(int i=0; i<numSkyObstacle; i++)
         {
-            int obstacle = Random.Range(0, obstacles.Length);
-            Instantiate(obstacles[obstacle], GetRandomPos(), Quaternion.identity);
+            int obstacle = Random.Range(0, skyObstacles.Length);
+            Instantiate(skyObstacles[obstacle], GetRandomPos(ObstacleType.Sky), Quaternion.identity);
+        }
+        for (int i = 0; i < numSeaObstacle; i++)
+        {
+            int obstacle = Random.Range(0, seaObstacles.Length);
+            Instantiate(seaObstacles[obstacle], GetRandomPos(ObstacleType.Sea), Quaternion.identity);
         }
     }
 
 
-    public Vector3 GetRandomPos() //범위 내의 랜덤 위치값 반환, 위치 List에 대입
+    public Vector3 GetRandomPos(ObstacleType type) //범위 내의 랜덤 위치값 반환, 위치 List에 대입
     {
+        float randomX = new float();
+        float randomY = new float();
 
-        //do //random Position 생성
-        //{
-        //    float randomX = Random.Range(mapStartPoint.x, mapEndPoint.x);
-        //    float randomY = Random.Range(mapStartPoint.y, mapEndPoint.y);
-        //    Vector3 randomPos = new Vector3(randomX, randomY, 0.0f);
+        randomX = Random.Range(tf.position.x, XBound);
+        if (type == ObstacleType.Sky)
+        { 
+            randomY = Random.Range(skyLowerBound, skyUpperBound);
+           
+        }
+        else if(type == ObstacleType.Sea)
+        {
+            randomY = Random.Range(seaLowerBound, seaUpperBound);
+        }
 
-        //    if (posList.Contains(randomPos)) //이미 List에 있는 위치
-        //    {
-        //        randomX = Random.Range(mapStartPoint.x, mapEndPoint.x);
-        //        randomY = Random.Range(mapStartPoint.y, mapEndPoint.y);
-        //        randomPos = new Vector3(randomX, randomY, 0.0f);
-        //    }
-        //    else
-        //    {
-        //        posList.Add(randomPos);
-        //        return randomPos;
-        //    }
-        //}
-        //while (true);
-
-        float randomX = Random.Range(mapStartPoint.x, mapEndPoint.x);
-        float randomY = Random.Range(mapStartPoint.y, mapEndPoint.y);
         Vector3 randomPos = new Vector3(randomX, randomY, 0.0f);
         return randomPos;
     }
-
-    public static ObstacleGenerator Instance //오브젝트 생성자 접근 함수
-    {
-        get
-        {
-            if (null == instance)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
-
-    
 }

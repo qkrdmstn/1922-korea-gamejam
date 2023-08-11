@@ -5,29 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager instance = null;
     public GameObject clearUI;
     public GameObject overUI;
     public TMP_Text clearScore;
     public TMP_Text overScore;
     public int score;
-    
-
-    private void Awake()
-    {
-        if (null == instance) //ΩÃ±€≈Ê
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
