@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public TMP_Text clearScore;
     public TMP_Text overScore;
     public int score;
+    public float playTime;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class GameManager : Singleton<GameManager>
             GameOver();
         if (Input.GetKey(KeyCode.P))
             GameClear();
+
+        playTime += Time.deltaTime;
     }
 
     public void GameOver()
@@ -45,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SetPause()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
 
     }
 
@@ -68,6 +71,7 @@ public class GameManager : Singleton<GameManager>
     public void Initialized()
     {
         score = 0;
+        playTime = 0;
         Debug.Log("Init");
     }
 }

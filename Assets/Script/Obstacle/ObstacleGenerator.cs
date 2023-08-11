@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleGenerator : Singleton<ObstacleGenerator>
+public class ObstacleGenerator :MonoBehaviour
 {
-    public GameObject[] skyObstacles;
+    public GameObject[] skyObstacles; //장애물 생성
     public GameObject[] seaObstacles;
     public int[] numObstacle;
     public float skyUpperBound;
@@ -13,13 +13,21 @@ public class ObstacleGenerator : Singleton<ObstacleGenerator>
     public float seaLowerBound = 0;
     public float XBound;
     public Transform tf;
-
+    public GameObject OBparent;
     private PlayerUpperLimit upperLimit;
 
-    private void Start()
+
+    private void Awake()
     {
-        GenerateObstacle(0);
-        skyUpperBound = upperLimit.MaxY;
+        //skyUpperBound = upperLimit.MaxY;
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.playTime >= 10)
+            GenerateObstacle(0);
+        if (GameManager.Instance.playTime >= 40)
+            GenerateObstacle(1);
     }
 
     //시간마다 numObstacle 
@@ -31,17 +39,17 @@ public class ObstacleGenerator : Singleton<ObstacleGenerator>
         for(int i=0; i<numSkyObstacle; i++)
         {
             int obstacle = Random.Range(0, skyObstacles.Length);
-            Instantiate(skyObstacles[obstacle], GetRandomPos(ObstacleType.Sky), Quaternion.identity);
+            Instantiate(skyObstacles[obstacle], GetRandomPos(ObstacleType.Sky), Quaternion.identity, OBparent.transform);
         }
         for (int i = 0; i < numSeaObstacle; i++)
         {
             int obstacle = Random.Range(0, seaObstacles.Length);
-            Instantiate(seaObstacles[obstacle], GetRandomPos(ObstacleType.Sea), Quaternion.identity);
+            Instantiate(seaObstacles[obstacle], GetRandomPos(ObstacleType.Sea), Quaternion.identity, OBparent.transform);
         }
     }
 
 
-    public Vector3 GetRandomPos(ObstacleType type) //범위 내의 랜덤 위치값 반환, 위치 List에 대입
+    public Vector3 GetRandomPos(ObstacleType type) 
     {
         float randomX = new float();
         float randomY = new float();

@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 7772599358228560425}
   - component: {fileID: -5843966520316811560}
   - component: {fileID: 9100410333615240092}
+  - component: {fileID: -4033298225724235244}
   - component: {fileID: 8663174672862383979}
   - component: {fileID: 477064781535567825}
   m_Layer: 0
-  m_Name: SkyOB
+  m_Name: Bird
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  generator: {fileID: 0}
 --- !u!23 &9100410333615240092
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 02833e67f523a2d4e871b59ead615adb, type: 2}
+  - {fileID: 2100000, guid: 4f1ad77853944b543bce2954337cfdda, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +101,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-4033298225724235244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020766360344796393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122ecb6b7ad4d4a44827b7ddeaf4919d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  generator: {fileID: 0}
 --- !u!65 &8663174672862383979
 BoxCollider:
   m_ObjectHideFlags: 0
