@@ -7,7 +7,6 @@ public class ObstacleGenerator : Singleton<ObstacleGenerator>
     public GameObject[] skyObstacles;
     public GameObject[] seaObstacles;
     public int[] numObstacle;
-
     public float skyUpperBound;
     public float skyLowerBound;
     public float seaUpperBound;
@@ -15,13 +14,12 @@ public class ObstacleGenerator : Singleton<ObstacleGenerator>
     public float XBound;
     public Transform tf;
 
-    Vector3 mapStartPoint;
-    Vector3 mapEndPoint;
-    //List<Vector3> posList = new List<Vector3>();
+    private PlayerUpperLimit upperLimit;
 
     private void Start()
     {
         GenerateObstacle(0);
+        skyUpperBound = upperLimit.MaxY;
     }
 
     //시간마다 numObstacle 
