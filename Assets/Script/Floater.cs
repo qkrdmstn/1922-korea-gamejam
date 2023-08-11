@@ -17,10 +17,6 @@ public class Floater : MonoBehaviour
         // Effect Vertex -> Shot
         float waveHeight = WaveManager.Instance.GetWaveHeight(transform.position.x);
 
-        if(Physics.Raycast(transform.position, transform.forward, 1f, LayerMask.GetMask("Player")))
-        {
-            Debug.Log("TT");
-        }
 
         if (transform.position.y < waveHeight)
         {
