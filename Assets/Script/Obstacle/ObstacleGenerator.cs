@@ -80,7 +80,7 @@ public class ObstacleGenerator :MonoBehaviour
         if (isSky)
             randomY = Random.Range(skyLowerBound, skyUpperBound);
         else
-            randomY = 0.0f;
+            randomY = 1.5f;
 
         Vector3 randomPos = new Vector3(0.0f, randomY, randomZ);
 
