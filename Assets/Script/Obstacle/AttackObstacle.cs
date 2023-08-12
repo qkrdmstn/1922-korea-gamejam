@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OverObstacle : Obstacle
+public class AttackObstacle : Obstacle
 {
     private GameManager manager;
+
     private void Awake()
     {
         manager = GameObject.FindObjectOfType<GameManager>();
+        generator = FindObjectOfType<ObstacleGenerator>();
+        destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+       
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            manager.GameOver();
+            //Player의 Current_HP 값 -1 하기
+            Debug.Log("Attack Obstacle Hit");
         }
 
     }

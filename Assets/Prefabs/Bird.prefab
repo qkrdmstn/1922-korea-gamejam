@@ -57,8 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5bcac9947ed8b47aa0696bb5f329ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   generator: {fileID: 0}
+  obstacleSpeed: 0
+  type: 0
+  destroyPos: {fileID: 0}
 --- !u!23 &9100410333615240092
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,8 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122ecb6b7ad4d4a44827b7ddeaf4919d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   generator: {fileID: 0}
+  obstacleSpeed: 1.51
+  type: 0
+  destroyPos: {fileID: 0}
 --- !u!65 &8663174672862383979
 BoxCollider:
   m_ObjectHideFlags: 0

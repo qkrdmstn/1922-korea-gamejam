@@ -7,66 +7,81 @@ public class ObstacleGenerator :MonoBehaviour
     public GameObject[] skyObstacles; //장애물 생성
     public GameObject[] seaObstacles;
     public int[] numObstacle;
+
+    //Obstacle Bound
     public float skyUpperBound;
     public float skyLowerBound;
-    public float seaUpperBound;
     public float seaLowerBound = 0;
     public float XBound;
+    
     public Transform tf;
     public GameObject OBparent;
     private PlayerUpperLimit upperLimit;
 
-    private GameManager manager;
+    private GameManager manager; //Obstacle Generate Period
+    public float skyObPeriod;
+    public float skyObTimer;
+    private int index1;
+
+    public float seaObPeriod;
+    public float seaObTimer;
+
     private void Awake()
     {
         manager = GameObject.FindObjectOfType<GameManager>();
+
         //skyUpperBound = upperLimit.MaxY;
     }
 
     private void Update()
     {
-        if (manager.playTime >= 10)
-            GenerateObstacle(0);
-        if (manager.playTime >= 40)
-            GenerateObstacle(1);
-    }
+        skyObTimer += Time.deltaTime;
+        seaObTimer += Time.deltaTime;
 
-    //시간마다 numObstacle 
-    public void GenerateObstacle(int index) //시간마다 index 조절해서 호출하기
-    {
-        int numSkyObstacle = Random.Range(0, numObstacle[index]);
-        int numSeaObstacle = numObstacle[index] - numSkyObstacle;
-
-        for(int i=0; i<numSkyObstacle; i++)
+        if(skyObTimer > skyObPeriod)
         {
-            int obstacle = Random.Range(0, skyObstacles.Length);
-            Instantiate(skyObstacles[obstacle], GetRandomPos(ObstacleType.Sky), Quaternion.identity, OBparent.transform);
+            skyObTimer = 0;
+            GenerateSkyObstacle(index1);
+            index1++;
+            if (index1 >= numObstacle.Length - 1)
+                index1--;
         }
-        for (int i = 0; i < numSeaObstacle; i++)
+
+        if (seaObTimer > seaObPeriod)
         {
-            int obstacle = Random.Range(0, seaObstacles.Length);
-            Instantiate(seaObstacles[obstacle], GetRandomPos(ObstacleType.Sea), Quaternion.identity, OBparent.transform);
+            seaObTimer = 0;
+            GenerateSeaObstacle();
         }
     }
 
 
-    public Vector3 GetRandomPos(ObstacleType type) 
+    public void GenerateSkyObstacle(int index) //시간마다 index 조절해서 호출하기
     {
-        float randomX = new float();
+        for(int i=0; i< numObstacle[index]; i++)
+        {
+            int obstacle = Random.Range(0, skyObstacles.Length - 1);
+            Instantiate(skyObstacles[obstacle], GetRandomPos(true), Quaternion.identity, OBparent.transform);
+        }
+    }
+    public void GenerateSeaObstacle() //시간마다 index 조절해서 호출하기
+    {
+        int obstacle = Random.Range(0, seaObstacles.Length - 1);
+        Instantiate(seaObstacles[obstacle], GetRandomPos(false), Quaternion.identity, OBparent.transform);
+      
+    }
+
+    public Vector3 GetRandomPos(bool isSky) //바다 장애물이면 Y값 0으로 고정
+    {
+        float randomX = Random.Range(tf.position.x, XBound);
         float randomY = new float();
 
-        randomX = Random.Range(tf.position.x, XBound);
-        if (type == ObstacleType.Sky)
-        { 
+        if (isSky)
             randomY = Random.Range(skyLowerBound, skyUpperBound);
-           
-        }
-        else if(type == ObstacleType.Sea)
-        {
-            randomY = Random.Range(seaLowerBound, seaUpperBound);
-        }
+        else
+            randomY = 0.0f;
 
         Vector3 randomPos = new Vector3(randomX, randomY, 0.0f);
-        return randomPos;
+
+       return randomPos;
     }
 }

@@ -111,7 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5bcac9947ed8b47aa0696bb5f329ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generator: {fileID: 0}
+  obstacleSpeed: 1.69
   type: 1
+  destroyPos: {fileID: 0}
 --- !u!54 &4947387770628024002
 Rigidbody:
   m_ObjectHideFlags: 0
