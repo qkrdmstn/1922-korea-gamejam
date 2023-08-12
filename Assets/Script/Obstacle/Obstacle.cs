@@ -11,15 +11,19 @@ public enum ObstacleType
 public class Obstacle : MonoBehaviour
 {
     public ObstacleType type;
-
+    public ObstacleGenerator generator;
+    private void Awake()
+    {
+        generator = FindObjectOfType<ObstacleGenerator>();
+    }
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Obstacle"))
         {
             if(type == ObstacleType.Sky)
-                this.transform.position = ObstacleGenerator.Instance.GetRandomPos(ObstacleType.Sky);
+                this.transform.position = generator.GetRandomPos(ObstacleType.Sky);
             else if (type == ObstacleType.Sea)
-                this.transform.position = ObstacleGenerator.Instance.GetRandomPos(ObstacleType.Sea);
+                this.transform.position = generator.GetRandomPos(ObstacleType.Sea);
         }
     }
 }
