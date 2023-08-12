@@ -97,7 +97,9 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.SetCurrentSpeed(0f);
+        AudioManager.instance.PlaySFX("Hit01");
         onHitEvent?.Invoke(statusManager.GetStatus(StatusType.CURRENT_HP).GetValue());
+        
     }
 
     private void Dead()
@@ -109,15 +111,18 @@ public class PlayerController : MonoBehaviour
 
             FadeManager.Instance.FadeOut(1f);
         });
+
+        onDeadEvent?.Invoke();
+        AudioManager.instance.PlaySFX("Hit02");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Plane"))
-        //{
-        //    Debug.Log("asd");
-        //    Dead();
-        //}
+        if (other.CompareTag("Plane"))
+        {
+            Debug.Log("asd");
+            Dead();
+        }
 
     }
 }

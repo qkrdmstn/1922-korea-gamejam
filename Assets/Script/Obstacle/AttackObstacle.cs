@@ -22,7 +22,7 @@ public class AttackObstacle : Obstacle
             //Player의 Current_HP 값 -1 하기
             Debug.Log("Attack Obstacle Hit");
             playerController.Hit();
-            
+            Destroy(this.gameObject);
         }
 
     }

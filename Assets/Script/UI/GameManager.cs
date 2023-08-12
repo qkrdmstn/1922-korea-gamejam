@@ -23,10 +23,7 @@ public class GameManager : MonoBehaviour
     public ObstacleGenerator generator;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        Initialized();
-    }
+    
 
     // Update is called once per frame
     void Update()
