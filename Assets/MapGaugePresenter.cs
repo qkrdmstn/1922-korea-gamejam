@@ -18,4 +18,9 @@ public class MapGaugePresenter : MonoBehaviour
     {
         fillImage.fillAmount = (playerObject.transform.position.z / 10000f);
     }
+
+    public float GetMapPercent()
+    {
+        return playerObject.transform.position.z / 10000f;
+    }
 }
