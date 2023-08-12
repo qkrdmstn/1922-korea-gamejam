@@ -381,7 +381,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142083339}
-  m_LocalRotation: {x: 0.1621585, y: 0.000000008489324, z: -0.0000000013950804, w: 0.9867647}
+  m_LocalRotation: {x: 0.1621585, y: -0.000000008489326, z: 0.0000000013950807, w: 0.9867647}
   m_LocalPosition: {x: 0, y: 37.57, z: -19.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -556,6 +556,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
         type: 3}
+      propertyPath: seaObstacles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
       propertyPath: numObstacle.Array.data[0]
       value: 10
       objectReference: {fileID: 0}
@@ -609,6 +619,72 @@ PrefabInstance:
       propertyPath: numObstacle.Array.data[10]
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: seaObstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 9014541424775578900, guid: e365f31b08461f5409ddbf40ed8071df,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: seaObstacles.Array.data[1]
+      value: 
+      objectReference: {fileID: 915956726928746863, guid: 0e8a0f2bce975a340951b88a493db4f9,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: seaObstacles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1854646257837665693, guid: a3723662fe4b0d94c8975be43b259d72,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: seaObstacles.Array.data[3]
+      value: 
+      objectReference: {fileID: 9014541424775578900, guid: ac16f2584cdab284c984aa4cdda25004,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 8294459796394615158, guid: dde2b20237814554f96c5e17228cc442,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[1]
+      value: 
+      objectReference: {fileID: 2846063401612471688, guid: 4c8ad34ab8c6da94fad3274584fd60b6,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[2]
+      value: 
+      objectReference: {fileID: 8294459796394615158, guid: 46403b238e1373948856735870505d0f,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[3]
+      value: 
+      objectReference: {fileID: 2846063401612471688, guid: 97f49ec6afc8b4244a24e607f5e8d2d7,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[4]
+      value: 
+      objectReference: {fileID: 6861464075754720948, guid: 27a21dd3a4088c34194594cb67f60876,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[5]
+      value: 
+      objectReference: {fileID: 2846063401612471688, guid: 45c7900d890abff4382e1351588082dc,
+        type: 3}
+    - target: {fileID: 4436178619794090463, guid: ad348f2f9cad0a44493111bbf2f8f25e,
+        type: 3}
+      propertyPath: skyObstacles.Array.data[6]
+      value: 
+      objectReference: {fileID: 8294459796394615158, guid: 6faaf3a5b149d3a4a88b454332cc500a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad348f2f9cad0a44493111bbf2f8f25e, type: 3}
 --- !u!1 &204607541
@@ -3503,7 +3579,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686490444}
-  m_LocalRotation: {x: 0.1621585, y: 0.000000008489324, z: -0.0000000013950804, w: 0.9867647}
+  m_LocalRotation: {x: 0.1621585, y: -0.000000008489326, z: 0.0000000013950807, w: 0.9867647}
   m_LocalPosition: {x: 0, y: 37.57, z: -19.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

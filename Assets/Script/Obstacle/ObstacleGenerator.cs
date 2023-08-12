@@ -61,13 +61,13 @@ public class ObstacleGenerator :MonoBehaviour
     {
         for(int i=0; i< numObstacle[index]; i++)
         {
-            int obstacle = Random.Range(0, skyObstacles.Length - 1);
+            int obstacle = Random.Range(0, skyObstacles.Length);
             Instantiate(skyObstacles[obstacle], GetRandomPos(true), Quaternion.identity, OBparent.transform);
         }
     }
     public void GenerateSeaObstacle() //시간마다 index 조절해서 호출하기
     {
-        int obstacle = Random.Range(0, seaObstacles.Length - 1);
+        int obstacle = Random.Range(0, seaObstacles.Length);
         Instantiate(seaObstacles[obstacle], GetRandomPos(false), Quaternion.identity, OBparent.transform);
       
     }

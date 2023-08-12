@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba90c7e89ce8fb847b770b7be3fc7975
+guid: 79bdbdad97581b24187ee736f1a55e35
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -20,13 +20,13 @@ ModelImporter:
     second: //RootNode
   - first:
       43: 4300000
-    second: Cloud1
+    second: Rock2
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: 8060cbf3edc49854bbc8cdc8f2b7da39, type: 2}
+    second: {fileID: 2100000, guid: fb0d1ade9e831074699cfcf99c6ad134, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
