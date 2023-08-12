@@ -11,7 +11,6 @@ public class SceneController : Singleton<SceneController>
     {
         SceneManager.LoadScene(SceneName);
 
-        //   StartCoroutine("ChangeScene", SceneName);
     }
     private IEnumerator ChangeScene(string SceneName)
     {
