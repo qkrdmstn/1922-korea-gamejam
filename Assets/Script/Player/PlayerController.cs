@@ -16,7 +16,10 @@ public class PlayerController : MonoBehaviour
     [field :SerializeField] public PlayerState CurrState { get; private set; }
 
     private StatusManager statusManager;
+    private GameManager gameManager;
+    public UIHeartBehaviour[] HP_UI;
     private Rigidbody rig;
+
 
     [field: SerializeField] public float AccTime { get; private set; }
     private float timer = .0f;
@@ -41,7 +44,9 @@ public class PlayerController : MonoBehaviour
         TryGetComponent(out statusManager);
         TryGetComponent(out rig);
         TryGetComponent(out controller);
-
+        gameManager = FindObjectOfType<GameManager>();
+        HP_UI = FindObjectsOfType<UIHeartBehaviour>();
+  
         SetFrezzeMode(false);
     }
 
@@ -83,7 +88,7 @@ public class PlayerController : MonoBehaviour
     public void Hit()
     {
         statusManager.GetStatus(StatusType.CURRENT_HP).SubValue(1f);
-
+       
         if (statusManager.GetStatus(StatusType.CURRENT_HP).GetValue() <= 0)
         {
             Dead();
@@ -97,6 +102,22 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        onDeadEvent?.Invoke();
+        FadeManager.Instance.FadeIn(1f, () =>
+        {
+            gameManager.GameOver();
+            onDeadEvent?.Invoke();
+
+            FadeManager.Instance.FadeOut(1f);
+        });
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //if (other.CompareTag("Plane"))
+        //{
+        //    Debug.Log("asd");
+        //    Dead();
+        //}
+
     }
 }

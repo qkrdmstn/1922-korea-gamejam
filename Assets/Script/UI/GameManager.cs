@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public GameObject clearUI;
     public GameObject overUI;
+    public GameObject mapGauge;
+    public GameObject HeartBoard;
+    public GameObject socreBoard;
+
     private TMP_Text clearScore;
     private TMP_Text overScore;
     private TMP_Text scoreText;
@@ -17,6 +21,7 @@ public class GameManager : MonoBehaviour
     public float playTime;
     public GameObject player;
     public ObstacleGenerator generator;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,14 +36,21 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        mapGauge.SetActive(false); //ºÎ¼ö UI ²ô±â
+        HeartBoard.SetActive(false);
+        socreBoard.SetActive(false);
+
         overUI.SetActive(true);
         Time.timeScale = 0;
-        Debug.Log("a");
         scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
     }
 
     public void GameClear()
     {
+        mapGauge.SetActive(false); //ºÎ¼ö UI ²ô±â
+        HeartBoard.SetActive(false);
+        socreBoard.SetActive(false);
+
         Time.timeScale = 0;
         clearUI.SetActive(true);
         scoreText = clearUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
@@ -75,4 +87,5 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Init");
     }
+
 }

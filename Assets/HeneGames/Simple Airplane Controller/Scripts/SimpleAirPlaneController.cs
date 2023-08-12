@@ -592,5 +592,16 @@ namespace HeneGames.Airplane
         }
 
         #endregion
+
+        #region Collision
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("Wind"))
+            {
+                transform.Rotate(Vector3.right * -1 * currentPitchSpeed * Time.deltaTime * 10);
+            }
+             
+        }
+        #endregion
     }
 }
