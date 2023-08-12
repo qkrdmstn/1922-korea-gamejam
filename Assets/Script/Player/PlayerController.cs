@@ -58,21 +58,14 @@ public class PlayerController : MonoBehaviour
         {
             timer = .0f;
             controller.AddCurrSpeed(1f);
-            // 가속하는 행위를 이곳에서 처리한다.
         }
 
-        // onLeftButton = Input.GetMouseButton(0);
-
-        rig.AddForce(Vector3.right * movePower * Time.deltaTime, ForceMode.Force);
-    }
-
-    private void FixedUpdate()
-    {
-        if(onLeftButton)
+        if(Input.GetKeyDown(0))
         {
-            var power = new Vector3(0f, movePower, 0f);
-            rig.AddForceAtPosition(power, AddPowerPoint.transform.position, ForceMode.Acceleration);
+            Debug.Log("??");
+            controller.MultipleCurrSpeed(10f);
         }
+
     }
 
     private void SetFrezzeMode(bool isOn)

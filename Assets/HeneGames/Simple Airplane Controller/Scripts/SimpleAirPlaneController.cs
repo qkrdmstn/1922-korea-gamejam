@@ -21,7 +21,7 @@ namespace HeneGames.Airplane
         private float currentYawSpeed;
         private float currentPitchSpeed;
         private float currentRollSpeed;
-        private float currentSpeed;
+        [SerializeField] private float currentSpeed;
         private float currentEngineLightIntensity;
         private float currentEngineSoundPitch;
 
@@ -67,8 +67,7 @@ namespace HeneGames.Airplane
         [SerializeField] private float rollTurboMultiplier = 1f;
 
         [Header("Moving speed")]
-        [Range(5f, 100f)]
-        [SerializeField] private float defaultSpeed = 10f;
+        [SerializeField] public float defaultSpeed = 10f;
 
         [Range(10f, 200f)]
         [SerializeField] private float turboSpeed = 20f;
@@ -140,7 +139,12 @@ namespace HeneGames.Airplane
 
         public void AddCurrSpeed(float speed)
         {
-            currentSpeed += speed;
+            defaultSpeed += speed;
+        }
+
+        public void MultipleCurrSpeed(float speed)
+        {
+            defaultSpeed -= speed;
         }
 
         private void Update()
@@ -581,7 +585,7 @@ namespace HeneGames.Airplane
             //inputYawRight = Input.GetKey(KeyCode.E);
 
             //Turbo
-            inputTurbo = Input.GetKey(KeyCode.LeftShift);
+            inputTurbo = Input.GetKey(KeyCode.Space);
         }
 
         #endregion
