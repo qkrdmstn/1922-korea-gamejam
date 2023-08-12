@@ -252,8 +252,6 @@ namespace HeneGames.Airplane
                 transform.position = new Vector3(transform.position.x, 100f, transform.position.z);
             }
 
-            Debug.Log(transform.rotation.eulerAngles.x);
-
             //if (transform.rotation.eulerAngles.z is > 270 or <90)
             //    return;
 

@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     private SimpleAirPlaneController controller;
 
+    public UnityEvent<float> onHitEvent;
+    public UnityEvent onDeadEvent;
+
 
     private void Awake()
     {
@@ -77,6 +80,23 @@ public class PlayerController : MonoBehaviour
             rig.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
+    public void Hit()
+    {
+        statusManager.GetStatus(StatusType.CURRENT_HP).SubValue(1f);
 
+        if (statusManager.GetStatus(StatusType.CURRENT_HP).GetValue() <= 0)
+        {
+            Dead();
 
+            return;
+        }
+
+        controller.SetCurrentSpeed(0f);
+        onHitEvent?.Invoke(statusManager.GetStatus(StatusType.CURRENT_HP).GetValue());
+    }
+
+    private void Dead()
+    {
+        onDeadEvent?.Invoke();
+    }
 }
