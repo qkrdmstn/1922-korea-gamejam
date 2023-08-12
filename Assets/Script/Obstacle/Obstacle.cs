@@ -17,10 +17,9 @@ public class Obstacle : MonoBehaviour
     public ObstacleType type;
     public Transform destroyPos;
 
-    public void Awake()
+    protected void Awake()
     {
         destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Debug.Log(GameObject.FindGameObjectWithTag("Player"));
         generator = FindObjectOfType<ObstacleGenerator>();
         //Debug.Log("o");
     }
@@ -30,11 +29,14 @@ public class Obstacle : MonoBehaviour
         this.gameObject.transform.Translate(new Vector3(0, 0, -1 * obstacleSpeed * Time.deltaTime));
 
        // Debug.Log(destroyPos);
-        if (gameObject.transform.position.x < destroyPos.position.x)
+        if (gameObject.transform.position.z < destroyPos.position.z - 50)
+        {
             Destroy(this.gameObject);
+        }
+
     }
 
-    private void OnTriggerStay(Collider other)
+    protected void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Obstacle"))
         {

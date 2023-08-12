@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 
     // Score
     public float playTime;
-
+    public GameObject player;
+    public ObstacleGenerator generator;
     // Start is called before the first frame update
     void Awake()
     {
@@ -69,6 +70,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         playTime = 0;
+        generator.index1 = 0;
+        player.transform.position = new Vector3(0, 31, 0);
+
         Debug.Log("Init");
     }
 }

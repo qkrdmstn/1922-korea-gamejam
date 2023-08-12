@@ -21,7 +21,7 @@ public class ObstacleGenerator :MonoBehaviour
     private GameManager manager; //Obstacle Generate Period
     public float skyObPeriod;
     public float skyObTimer;
-    private int index1;
+    public int index1;
 
     public float seaObPeriod;
     public float seaObTimer;

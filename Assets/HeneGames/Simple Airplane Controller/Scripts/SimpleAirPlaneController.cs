@@ -181,11 +181,11 @@ namespace HeneGames.Airplane
                 ChangeWingTrailEffectThickness(0f);
             }
 
-            //Crash
-            if (!planeIsDead && HitSometing())
-            {
-                Crash();
-            }
+            ////Crash
+            //if (!planeIsDead && HitSometing())
+            //{
+            //    Crash();
+            //}
         }
 
         private void SidewaysForceCalculation()
