@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void SetFrezzeMode(bool isOn)
+    public void SetFrezzeMode(bool isOn)
     {
         isAction = !isOn;
 
