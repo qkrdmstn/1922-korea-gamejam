@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8168025437067212604}
   - component: {fileID: 9049494769302577635}
   - component: {fileID: 5028592679921729268}
+  - component: {fileID: -7191660777168937204}
   m_Layer: 0
   m_Name: Condor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7191660777168937204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861464075754720948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122ecb6b7ad4d4a44827b7ddeaf4919d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 0}
+  obstacleSpeed: 1
+  type: 1
+  destroyPos: {fileID: 0}

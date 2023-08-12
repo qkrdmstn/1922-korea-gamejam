@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         overUI.SetActive(true);
         Time.timeScale = 0;
-        Debug.Log("");
+        Debug.Log("a");
         scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
     }
 

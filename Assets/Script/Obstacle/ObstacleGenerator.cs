@@ -12,7 +12,7 @@ public class ObstacleGenerator :MonoBehaviour
     public float skyUpperBound;
     public float skyLowerBound;
     public float seaLowerBound = 0;
-    public float XBound;
+    public float ZBound;
     
     public Transform tf;
     public GameObject OBparent;
@@ -52,6 +52,8 @@ public class ObstacleGenerator :MonoBehaviour
             seaObTimer = 0;
             GenerateSeaObstacle();
         }
+
+        //Debug.Log(tf.position);
     }
 
 
@@ -72,7 +74,7 @@ public class ObstacleGenerator :MonoBehaviour
 
     public Vector3 GetRandomPos(bool isSky) //바다 장애물이면 Y값 0으로 고정
     {
-        float randomX = Random.Range(tf.position.x, XBound);
+        float randomZ = Random.Range(tf.position.z + 800, ZBound);
         float randomY = new float();
 
         if (isSky)
@@ -80,7 +82,7 @@ public class ObstacleGenerator :MonoBehaviour
         else
             randomY = 0.0f;
 
-        Vector3 randomPos = new Vector3(randomX, randomY, 0.0f);
+        Vector3 randomPos = new Vector3(0.0f, randomY, randomZ);
 
        return randomPos;
     }

@@ -27,7 +27,7 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        this.gameObject.transform.Translate(new Vector3(-1 * obstacleSpeed * Time.deltaTime, 0, 0));
+        this.gameObject.transform.Translate(new Vector3(0, 0, -1 * obstacleSpeed * Time.deltaTime));
 
        // Debug.Log(destroyPos);
         if (gameObject.transform.position.x < destroyPos.position.x)
