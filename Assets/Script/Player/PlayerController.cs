@@ -2,239 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using HeneGames.Airplane;
 
 public enum PlayerState
 {
-    IDLE = -1,
-    FLYING = 0,
-    RUNNING,
-    DEATH
+    IDLE = 0,
+    FLY,
+    DEAD
 }
 
 public class PlayerController : MonoBehaviour
 {
-    private GyroscopeDataReceiver gyroReceiver;
+    [field :SerializeField] public PlayerState CurrState { get; private set; }
+
+    private StatusManager statusManager;
     private Rigidbody rig;
 
-    [Header("현재 상태")]
-    [SerializeField] private PlayerState currState = PlayerState.IDLE;
+    [field: SerializeField] public float AccTime { get; private set; }
+    private float timer = .0f;
 
-    [field: Header("Flying")]
-    [field: SerializeField] public AnimationCurve DownCurve { get; private set; }
+    private bool isAction = false;
 
-    [field: Header("Running")]
-    [field: SerializeField] public GameObject RigPoint { get; private set; }
-    [field: SerializeField] public AnimationCurve UpCurve { get; private set; }
-    [field: SerializeField] public GameObject TargetPosUp { get; private set; }
-    [field: SerializeField] public GameObject FloaterGroup { get; private set; }
+    [field:SerializeField] public AnimationCurve MoveUpCurve { get; private set; }
+    [field:SerializeField] public float MoveUpTime { get; private set; }
+    [field:SerializeField] public GameObject AddPowerPoint { get; private set; }
+    public float movePower = .0f;
 
-    public float power = .0f;
+    private bool onLeftButton = false;
+
+    private SimpleAirPlaneController controller;
+
 
     private void Awake()
     {
+        TryGetComponent(out statusManager);
         TryGetComponent(out rig);
-        TryGetComponent(out gyroReceiver);
+        TryGetComponent(out controller);
 
-        ChangeState(PlayerState.RUNNING);
-
-        // gyroReceiver.upMotionEvent.AddListener(AddRigYPoint);
-        // 여기에서 Event 등록
+        SetFrezzeMode(false);
     }
+
+    // 플레이어는 시간에 따라서 가속한다.
+    // 물건에 부딪히거나 플레이어의 조건에 따라서 감속을 할 수 있다.
+    // 플레이어의 고도 상승은 좌클릭을 통해서 진행한다.
+    // 고도 하락은 가만히 있을 경우 진행된다.
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!isAction)
+            return;
+
+        timer += Time.deltaTime;
+
+        if(timer >= AccTime)
         {
-            ChangeState(PlayerState.FLYING);
+            timer = .0f;
+            controller.AddCurrSpeed(1f);
+            // 가속하는 행위를 이곳에서 처리한다.
         }
 
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            ChangeState(PlayerState.RUNNING);
-        }
+        // onLeftButton = Input.GetMouseButton(0);
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            OnRunUpPosY(power);
-        }
+        rig.AddForce(Vector3.right * movePower * Time.deltaTime, ForceMode.Force);
     }
 
     private void FixedUpdate()
     {
+        if(onLeftButton)
+        {
+            var power = new Vector3(0f, movePower, 0f);
+            rig.AddForceAtPosition(power, AddPowerPoint.transform.position, ForceMode.Acceleration);
+        }
     }
 
-
-    private void ChangeState(PlayerState nextState)
+    private void SetFrezzeMode(bool isOn)
     {
-        if (currState == nextState)
-            return;
+        isAction = !isOn;
 
-        DebugWrap.Log($"{nextState}로 State를 Change 함.");
-
-        switch ((int)currState)
-        {
-            case 0:
-                OnFlyingChanged(false);
-                break;
-
-            case 1:
-                OnRunningChanged(false);
-                break;
-
-            case 2:
-                OnDeath(false);
-                break;
-        }
-
-        currState = nextState;
-
-        switch ((int)currState)
-        {
-            case 0:
-                OnFlyingChanged(true);
-                break;
-
-            case 1:
-                OnRunningChanged(true);
-                break;
-
-            case 2:
-                OnDeath(true);
-                break;
-        }
-
-    }
-
-    // True : Enter
-    // False : Exit
-    private void OnRunningChanged(bool isOn)
-    {
-        // Upper Motion Only : Upper Boat
         if (isOn)
-        {
-            if (currState != PlayerState.IDLE)
-            {
-                StartCoroutine(DownFly());
-                rig.velocity = Vector3.zero;
-
-                FloaterGroup.SetActive(true);
-            }
-
-            rig.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        }
-        else
-        {
-            // Fly로 이동한다면, Floater Group False
-            // Freeze 상태
-            FloaterGroup.SetActive(false);
             rig.constraints = RigidbodyConstraints.FreezeAll;
-        }
-
-    }
-
-    private void OnFlyingChanged(bool isOn)
-    {
-        // Upper Motion Only : Up Pos
-        if (isOn)
-        {
-            // 공중 상승
-            StartCoroutine(ClimbFly());
+        else
             rig.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
-        }
-        else
-        {
-            // true 바꿔주고 Freeze 걸어주기
-            rig.constraints = RigidbodyConstraints.FreezeAll;
-        }
     }
 
-    private void OnDeath(bool isOn)
-    {
-        if (isOn)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
-
-    // Running ------------------------------------------------------------------------------------
-    private void OnRunUpPosY(float power)
-    {
-        if (currState == PlayerState.RUNNING)
-        {
-            var veloPower = new Vector3(0, power, 0);
-            rig.AddForceAtPosition(veloPower, RigPoint.transform.position, ForceMode.Acceleration);
-            rig.AddForce(Vector3.one, ForceMode.Acceleration);
-        }
-        else if(currState ==PlayerState.FLYING)
-        {
-            rig.AddForce(new Vector3(0f, power, 0f), ForceMode.Acceleration);
-        }
-    }
-
-    // Run -> Fly
-    private IEnumerator ClimbFly()
-    {
-        var timer = .0f;
-        var targetPos = TargetPosUp.transform.position;
-        var startPos = transform.position;
-        Vector3 currPos = Vector3.zero;
-
-        // Rot
-        var startRot = transform.rotation;
-        // Curr Rot
-        var currRot = Quaternion.identity;
 
 
-        while (timer <= UpCurve.keys[UpCurve.length - 1].time)
-        {
-            currPos = Vector3.Lerp(startPos, targetPos, UpCurve.Evaluate(timer));
-            currRot = Quaternion.Euler(Vector3.Lerp(startRot.eulerAngles, Vector3.zero, timer));
-
-            transform.position = currPos;
-            transform.rotation = currRot;
-
-            yield return null;
-
-            timer += Time.deltaTime / 3f;
-        }
-    }
-
-    // Fly -> Run
-    private IEnumerator DownFly()
-    {
-        var timer = .0f;
-        var targetPos = transform.position;
-        var offsetVec = new Vector3(5f, 0f, 0f);
-
-        var startPos = transform.position;
-        Vector3 vector3 = Vector3.zero;
-
-        targetPos += offsetVec;
-        targetPos.y = 0f;
-
-        // Rot 
-        var startRot = transform.rotation;
-        // Curr
-        var currRot = Quaternion.identity;
-
-        while(timer <= DownCurve.keys[DownCurve.length - 1].time)
-        {
-            var currPos = transform.position;
-            currPos = Vector3.Lerp(startPos, targetPos, DownCurve.Evaluate(timer));
-            currRot = Quaternion.Euler(Vector3.Lerp(startRot.eulerAngles, Vector3.zero, timer));
-
-            transform.position = currPos;
-            transform.rotation = currRot;
-
-            yield return null;
-
-            timer += Time.deltaTime / 3f;
-        }
-    }
-
-    // Flying ------------------------------------------------------------------------------------
 }
