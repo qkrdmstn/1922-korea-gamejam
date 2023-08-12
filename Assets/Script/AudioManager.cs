@@ -23,8 +23,7 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
 
-        PlaySFX("Loop", true);
-        PlayBGM("BGM");
+        
     }
 
     public void PlayBGM(string p_bgmName)

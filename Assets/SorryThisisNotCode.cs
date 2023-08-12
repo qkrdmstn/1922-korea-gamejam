@@ -17,4 +17,5 @@ public class SorryThisisNotCode : MonoBehaviour
             transform.Rotate(-Vector3.forward * Time.deltaTime * rotatePower);
         }
     }
+    
 }
