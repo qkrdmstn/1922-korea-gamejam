@@ -13,7 +13,10 @@ public class Floater : MonoBehaviour
     private void FixedUpdate()
     {
         rig.AddForceAtPosition(Physics.gravity / floaterCount, transform.position, ForceMode.Acceleration);
+
+        // Effect Vertex -> Shot
         float waveHeight = WaveManager.Instance.GetWaveHeight(transform.position.x);
+
 
         if (transform.position.y < waveHeight)
         {
