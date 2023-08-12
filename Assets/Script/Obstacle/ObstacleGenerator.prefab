@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5342178367257910828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5342178367257910830}
+  - component: {fileID: 5342178367257910831}
+  m_Layer: 0
+  m_Name: ObstacleGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5342178367257910830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342178367257910828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5342178367257910831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342178367257910828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77996921ddab28a4fa3736761f2d4050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyObstacles:
+  - {fileID: 8294459796394615158, guid: dde2b20237814554f96c5e17228cc442, type: 3}
+  - {fileID: 2846063401612471688, guid: 4c8ad34ab8c6da94fad3274584fd60b6, type: 3}
+  - {fileID: 8294459796394615158, guid: 46403b238e1373948856735870505d0f, type: 3}
+  - {fileID: 2846063401612471688, guid: 97f49ec6afc8b4244a24e607f5e8d2d7, type: 3}
+  - {fileID: 6861464075754720948, guid: 27a21dd3a4088c34194594cb67f60876, type: 3}
+  - {fileID: 2846063401612471688, guid: 45c7900d890abff4382e1351588082dc, type: 3}
+  - {fileID: 8294459796394615158, guid: 6faaf3a5b149d3a4a88b454332cc500a, type: 3}
+  seaObstacles:
+  - {fileID: 9014541424775578900, guid: e365f31b08461f5409ddbf40ed8071df, type: 3}
+  - {fileID: 915956726928746863, guid: 0e8a0f2bce975a340951b88a493db4f9, type: 3}
+  - {fileID: 1854646257837665693, guid: a3723662fe4b0d94c8975be43b259d72, type: 3}
+  - {fileID: 9014541424775578900, guid: ac16f2584cdab284c984aa4cdda25004, type: 3}
+  numObstacle: 0a0000000c0000000d0000000e0000002600000014000000130000001e000000140000000a00000014000000
+  skyUpperBound: 80
+  skyLowerBound: 15
+  seaLowerBound: 0
+  ZBound: 100
+  tf: {fileID: 0}
+  OBparent: {fileID: 0}
+  skyObPeriod: 3
+  skyObTimer: 0
+  index1: 0
+  seaObPeriod: 6
+  seaObTimer: 0

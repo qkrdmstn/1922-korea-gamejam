@@ -13,8 +13,14 @@ public class TutorialStart : MonoBehaviour
 
     public void OnStartProcess()
     {
-        Debug.Log("Start!");
+        FadeManager.Instance.FadeIn(1f, () =>
+        {
+            AudioManager.instance.PlaySFX("Click");
 
-        onStart?.Invoke();
+            onStart?.Invoke();
+            SceneController.Instance.OnChangeScene("Game");
+
+            FadeManager.Instance.FadeOut(1f);
+        });
     }
 }
