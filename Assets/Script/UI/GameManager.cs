@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
         socreBoard.SetActive(false);
         
         overUI.SetActive(true);
-        scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
-        bestScoreText = overUI.transform.GetChild(0).transform.Find("HighScore").GetComponent<TMP_Text>();
+        scoreText = overUI.transform.GetChild(0).transform.Find("ScoreNumber").GetComponent<TMP_Text>();
+        bestScoreText = overUI.transform.GetChild(0).transform.Find("HighScoreNumber").GetComponent<TMP_Text>();
 
        
         scoreText.text = curScore.ToString();
@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         clearUI.SetActive(true);
 
-        scoreText = clearUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
-        bestScoreText = clearUI.transform.GetChild(0).transform.Find("HighScore").GetComponent<TMP_Text>();
+        scoreText = clearUI.transform.GetChild(0).transform.Find("ScoreNumber").GetComponent<TMP_Text>();
+        bestScoreText = clearUI.transform.GetChild(0).transform.Find("HighScoreNumber").GetComponent<TMP_Text>();
 
         scoreText.text = curScore.ToString();
         bestScoreText.text = PlayerPrefs.GetFloat("BestScore").ToString();

@@ -18,7 +18,8 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = manager.playTime.ToString();
+        var asdf = Mathf.Floor(manager.playTime);
+        scoreText.text = asdf.ToString();
         bestScoreText.text = PlayerPrefs.GetFloat("BestScore").ToString();
 
     }
