@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
         if (curScore < PlayerPrefs.GetFloat("BestScore")) //(시간) 더 빨라야 좋은 기록
             PlayerPrefs.SetFloat("BestScore", curScore);
 
-        Time.timeScale = 0;
         clearUI.SetActive(true);
 
         scoreText = clearUI.transform.GetChild(0).transform.Find("ScoreNumber").GetComponent<TMP_Text>();
@@ -79,6 +78,11 @@ public class GameManager : MonoBehaviour
 
         scoreText.text = curScore.ToString();
         bestScoreText.text = PlayerPrefs.GetFloat("BestScore").ToString();
+    }
+
+    public void LateGameClear()
+    {
+        Time.timeScale = 0;
     }
 
     public void SetPause()

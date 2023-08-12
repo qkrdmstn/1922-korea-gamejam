@@ -37,7 +37,10 @@ public class MapGaugePresenter : MonoBehaviour
                 clearUI.SetActive(true);
                 Destroy(playerController.gameObject);
                 AudioManager.instance.PlaySFX("Clear");
-                FadeManager.Instance.FadeOut(2f);
+                FadeManager.Instance.FadeOut(2f, () =>
+                {
+                    manager.LateGameClear();
+                });
             });
         } 
         else
