@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _CamOffet: 0
-    - _Inten: 1.02
+    - _Inten: 1.73
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
