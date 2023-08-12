@@ -60,10 +60,9 @@ public class PlayerController : MonoBehaviour
             controller.AddCurrSpeed(1f);
         }
 
-        if(Input.GetKeyDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("??");
-            controller.MultipleCurrSpeed(10f);
+            controller.SetCurrentSpeed(0f);
         }
 
     }

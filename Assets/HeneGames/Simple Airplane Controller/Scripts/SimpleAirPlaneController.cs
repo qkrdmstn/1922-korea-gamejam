@@ -144,7 +144,7 @@ namespace HeneGames.Airplane
 
         public void MultipleCurrSpeed(float speed)
         {
-            defaultSpeed -= speed;
+            defaultSpeed *= speed;
         }
 
         private void Update()
@@ -244,22 +244,24 @@ namespace HeneGames.Airplane
 
         private void Movement()
         {
+            
+
             //Move forward
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+
+            if (transform.position.y > 100f)
+            {
+                transform.position = new Vector3(transform.position.x, 100f, transform.position.z);
+            }
+
+            Debug.Log(transform.rotation.eulerAngles.x);
+
+            //if (transform.rotation.eulerAngles.z is > 270 or <90)
+            //    return;
 
             //Rotate airplane by inputs
             transform.Rotate(Vector3.forward * -inputH * currentRollSpeed * Time.deltaTime);
             transform.Rotate(Vector3.right * inputV * currentPitchSpeed * Time.deltaTime);
-
-            //Rotate yaw
-            if (inputYawRight)
-            {
-                transform.Rotate(Vector3.up * currentYawSpeed * Time.deltaTime);
-            }
-            else if (inputYawLeft)
-            {
-                transform.Rotate(-Vector3.up * currentYawSpeed * Time.deltaTime);
-            }
 
             //Accelerate and deacclerate
             if (currentSpeed < maxSpeed)
@@ -568,6 +570,11 @@ namespace HeneGames.Airplane
         public float CurrentSpeed()
         {
             return currentSpeed;
+        }
+
+        public void SetCurrentSpeed(float speed)
+        {
+            currentSpeed = speed;
         }
 
         #endregion
