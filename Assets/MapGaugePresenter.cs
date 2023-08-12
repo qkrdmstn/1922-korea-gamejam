@@ -9,6 +9,11 @@ public class MapGaugePresenter : MonoBehaviour
 
     public Image fillImage;
 
+    public PlayerController playerController;
+    public GameObject clearUI;
+
+    private bool isArrive = false;
+
     private void Awake()
     {
 
@@ -16,7 +21,21 @@ public class MapGaugePresenter : MonoBehaviour
 
     private void Update()
     {
-        fillImage.fillAmount = (playerObject.transform.position.z / 10000f);
+        if( (playerObject.transform.position.z / 10000f) >= 0.95f && !isArrive)
+        {
+            isArrive = true;
+
+            playerController.SetFrezzeMode(true);
+
+            FadeManager.Instance.FadeIn(1f, () =>
+            {
+                clearUI.SetActive(true);
+                Destroy(playerController.gameObject);
+                FadeManager.Instance.FadeOut(2f);
+            });
+        } 
+        else
+            fillImage.fillAmount = (playerObject.transform.position.z / 10000f);
     }
 
     public float GetMapPercent()

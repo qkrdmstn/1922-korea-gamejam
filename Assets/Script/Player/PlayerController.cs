@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     private SimpleAirPlaneController controller;
 
+    public UnityEvent<float> onHitEvent;
+    public UnityEvent onDeadEvent;
+
 
     private void Awake()
     {
@@ -58,24 +61,16 @@ public class PlayerController : MonoBehaviour
         {
             timer = .0f;
             controller.AddCurrSpeed(1f);
-            // 가속하는 행위를 이곳에서 처리한다.
         }
 
-        // onLeftButton = Input.GetMouseButton(0);
-
-        rig.AddForce(Vector3.right * movePower * Time.deltaTime, ForceMode.Force);
-    }
-
-    private void FixedUpdate()
-    {
-        if(onLeftButton)
+        if(Input.GetMouseButtonDown(0))
         {
-            var power = new Vector3(0f, movePower, 0f);
-            rig.AddForceAtPosition(power, AddPowerPoint.transform.position, ForceMode.Acceleration);
+            controller.SetCurrentSpeed(0f);
         }
+
     }
 
-    private void SetFrezzeMode(bool isOn)
+    public void SetFrezzeMode(bool isOn)
     {
         isAction = !isOn;
 
@@ -85,6 +80,23 @@ public class PlayerController : MonoBehaviour
             rig.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
+    public void Hit()
+    {
+        statusManager.GetStatus(StatusType.CURRENT_HP).SubValue(1f);
 
+        if (statusManager.GetStatus(StatusType.CURRENT_HP).GetValue() <= 0)
+        {
+            Dead();
 
+            return;
+        }
+
+        controller.SetCurrentSpeed(0f);
+        onHitEvent?.Invoke(statusManager.GetStatus(StatusType.CURRENT_HP).GetValue());
+    }
+
+    private void Dead()
+    {
+        onDeadEvent?.Invoke();
+    }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status:
   - type: 1
-    value: 1
+    value: 3
   - type: 2
     value: 1
   - type: 3

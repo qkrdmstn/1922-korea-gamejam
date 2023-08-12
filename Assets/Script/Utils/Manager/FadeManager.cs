@@ -23,8 +23,6 @@ public class FadeManager : Singleton<FadeManager>
         base.Awake();
 
         FadeImage.raycastTarget = false;
-
-        FadeIn(1f);
     }
 
     public void FadeIn(float time = 0f, UnityAction inAction = null)
