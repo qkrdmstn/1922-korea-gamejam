@@ -13,12 +13,16 @@ public class GameManager : MonoBehaviour
     public GameObject HeartBoard;
     public GameObject socreBoard;
 
+
     private TMP_Text clearScore;
     private TMP_Text overScore;
     private TMP_Text scoreText;
+    private TMP_Text bestScoreText;
 
     // Score
     public float playTime;
+    public float curScore;
+
     public GameObject player;
     public ObstacleGenerator generator;
 
@@ -36,9 +40,15 @@ public class GameManager : MonoBehaviour
         mapGauge.SetActive(false); //부수 UI 끄기
         HeartBoard.SetActive(false);
         socreBoard.SetActive(false);
-
+        
         overUI.SetActive(true);
         scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
+        bestScoreText = overUI.transform.GetChild(0).transform.Find("HighScore").GetComponent<TMP_Text>();
+
+       
+        scoreText.text = curScore.ToString();
+        bestScoreText.text = PlayerPrefs.GetFloat("BestScore").ToString();
+        
     }
 
     public void LateGameOver()
@@ -52,9 +62,18 @@ public class GameManager : MonoBehaviour
         HeartBoard.SetActive(false);
         socreBoard.SetActive(false);
 
+        curScore = playTime;
+        if (curScore < PlayerPrefs.GetFloat("BestScore")) //(시간) 더 빨라야 좋은 기록
+            PlayerPrefs.SetFloat("BestScore", curScore);
+
         Time.timeScale = 0;
         clearUI.SetActive(true);
+
         scoreText = clearUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
+        bestScoreText = clearUI.transform.GetChild(0).transform.Find("HighScore").GetComponent<TMP_Text>();
+
+        scoreText.text = curScore.ToString();
+        bestScoreText.text = PlayerPrefs.GetFloat("BestScore").ToString();
     }
 
     public void SetPause()

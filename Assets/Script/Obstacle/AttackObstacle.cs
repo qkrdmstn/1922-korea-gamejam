@@ -13,8 +13,8 @@ public class AttackObstacle : Obstacle
         //generator = FindObjectOfType<ObstacleGenerator>();
         //destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         base.Awake();
-       
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
