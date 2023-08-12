@@ -50,5 +50,6 @@ MonoBehaviour:
   HeartBoard: {fileID: 0}
   socreBoard: {fileID: 0}
   playTime: 0
+  curScore: 0
   player: {fileID: 0}
   generator: {fileID: 0}

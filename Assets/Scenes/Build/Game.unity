@@ -532,11 +532,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6626508082334654409, guid: 98e73ed45d080f0499801116094e0b05,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6626508082334654410, guid: 98e73ed45d080f0499801116094e0b05,
         type: 3}
       propertyPath: overUI
@@ -5021,6 +5016,7 @@ MonoBehaviour:
   fillImage: {fileID: 1833623081}
   playerController: {fileID: 8793844479655225831}
   clearUI: {fileID: 293712671}
+  manager: {fileID: 1175270989}
 --- !u!4 &1765194797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6805621848954614139, guid: b3153dc28bdb00f40aec34c24f96c7ec,
@@ -7428,16 +7424,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634075479357316353, guid: 29c9d3d124953c44595e2afc52dbfcf1,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634075479357316353, guid: 29c9d3d124953c44595e2afc52dbfcf1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634075479357316353, guid: 29c9d3d124953c44595e2afc52dbfcf1,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7501,26 +7487,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2634075479357316354, guid: 29c9d3d124953c44595e2afc52dbfcf1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2634075479649027550, guid: 29c9d3d124953c44595e2afc52dbfcf1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1175270989}
     - target: {fileID: 2634075479775033515, guid: 29c9d3d124953c44595e2afc52dbfcf1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634075479929819930, guid: 29c9d3d124953c44595e2afc52dbfcf1,
-        type: 3}
-      propertyPath: m_text
-      value: Score
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1175270989}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c9d3d124953c44595e2afc52dbfcf1, type: 3}
 --- !u!114 &6738443612823325792

@@ -12,6 +12,8 @@ public class MapGaugePresenter : MonoBehaviour
     public PlayerController playerController;
     public GameObject clearUI;
 
+    public GameManager manager;
+
     private bool isArrive = false;
 
     private void Awake()
@@ -31,6 +33,7 @@ public class MapGaugePresenter : MonoBehaviour
             {
                 AudioManager.instance.LoopAllStop();
 
+                manager.GameClear();
                 clearUI.SetActive(true);
                 Destroy(playerController.gameObject);
                 AudioManager.instance.PlaySFX("Clear");
