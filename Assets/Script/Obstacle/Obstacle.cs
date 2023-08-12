@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour
     public ObstacleType type;
     public Transform destroyPos;
 
-    private void Awake()
+    public void Awake()
     {
         destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Debug.Log(GameObject.FindGameObjectWithTag("Player"));

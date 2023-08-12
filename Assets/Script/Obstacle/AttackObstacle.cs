@@ -9,9 +9,9 @@ public class AttackObstacle : Obstacle
     private void Awake()
     {
         manager = GameObject.FindObjectOfType<GameManager>();
-        generator = FindObjectOfType<ObstacleGenerator>();
-        destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
+        //generator = FindObjectOfType<ObstacleGenerator>();
+        //destroyPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        base.Awake();
        
     }
     private void OnTriggerEnter(Collider other)
