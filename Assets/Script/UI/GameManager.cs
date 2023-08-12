@@ -5,26 +5,31 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     public GameObject clearUI;
     public GameObject overUI;
-    public TMP_Text clearScore;
-    public TMP_Text overScore;
+    private TMP_Text clearScore;
+    private TMP_Text overScore;
+    private TMP_Text scoreText;
     public int score;
     public float playTime;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Initialized();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.O))
+        {
+            Debug.Log("s");
             GameOver();
+        }
+           
         if (Input.GetKey(KeyCode.P))
             GameClear();
 
@@ -33,18 +38,20 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        
         overUI.SetActive(true);
-  
-        overScore.text = score.ToString();
         Time.timeScale = 0;
+        Debug.Log("");
+        scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
+        scoreText.text = score.ToString();
+
     }
 
     public void GameClear()
     {
         Time.timeScale = 0;
         clearUI.SetActive(true);
-        clearScore.text = score.ToString();
+        scoreText = clearUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
+        scoreText.text = score.ToString();
     }
 
     public void SetPause()
@@ -71,6 +78,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Initialized()
     {
+        Time.timeScale = 1;
         score = 0;
         playTime = 0;
         Debug.Log("Init");

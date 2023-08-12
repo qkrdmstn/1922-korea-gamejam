@@ -16,17 +16,18 @@ public class ObstacleGenerator :MonoBehaviour
     public GameObject OBparent;
     private PlayerUpperLimit upperLimit;
 
-
+    private GameManager manager;
     private void Awake()
     {
+        manager = GameObject.FindObjectOfType<GameManager>();
         //skyUpperBound = upperLimit.MaxY;
     }
 
     private void Update()
     {
-        if (GameManager.Instance.playTime >= 10)
+        if (manager.playTime >= 10)
             GenerateObstacle(0);
-        if (GameManager.Instance.playTime >= 40)
+        if (manager.playTime >= 40)
             GenerateObstacle(1);
     }
 

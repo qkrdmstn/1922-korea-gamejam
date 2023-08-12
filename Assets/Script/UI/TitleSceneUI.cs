@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneUI : MonoBehaviour
 {
+
     public void GameStart()
     {
-        GameManager.Instance.Initialized();
         SceneManager.LoadScene("ObstacleScene");
     }
 

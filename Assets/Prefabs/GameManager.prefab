@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004090a149656cd4a9684b183f195fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearUI: {fileID: 2634075479357316354, guid: 29c9d3d124953c44595e2afc52dbfcf1, type: 3}
-  overUI: {fileID: 7407268437695222627, guid: 55d26a2f0674450488307d22d15baa28, type: 3}
-  clearScore: {fileID: 0}
-  overScore: {fileID: 0}
+  clearUI: {fileID: 0}
+  overUI: {fileID: 0}
   score: 10000
   playTime: 0
