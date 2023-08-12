@@ -186,10 +186,10 @@ namespace HeneGames.Airplane
             }
 
             //Crash
-            if (!planeIsDead && HitSometing())
-            {
-                Crash();
-            }
+            //if (!planeIsDead && HitSometing())
+            //{
+            //    Crash();
+            //}
         }
 
         private void SidewaysForceCalculation()
@@ -244,8 +244,6 @@ namespace HeneGames.Airplane
 
         private void Movement()
         {
-            
-
             //Move forward
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
