@@ -46,5 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearUI: {fileID: 0}
   overUI: {fileID: 0}
-  score: 10000
+  mapGauge: {fileID: 0}
+  HeartBoard: {fileID: 0}
+  socreBoard: {fileID: 0}
   playTime: 0
+  player: {fileID: 0}
+  generator: {fileID: 0}

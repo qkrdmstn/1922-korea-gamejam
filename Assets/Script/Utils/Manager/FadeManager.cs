@@ -42,11 +42,13 @@ public class FadeManager : Singleton<FadeManager>
     {
         if (isFading)
         {
+            Debug.Log("Fade가 진행중입니다.");
             return;
         }
         
         SetFadeRun(true);
-        
+
+        Debug.Log("FADE OUT");
         StartCoroutine(UpdateScreenFade(MAX, MIN, time, outAction));
     }
 
@@ -60,9 +62,10 @@ public class FadeManager : Singleton<FadeManager>
             timer += Time.deltaTime;
             
             imageColor.a = Mathf.Lerp(start, end, timer / time);
+
             FadeImage.color = imageColor;
-            
-            yield return null;
+
+            yield return new WaitForSecondsRealtime(0f);
         }
         
         // is Fading OFF

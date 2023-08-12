@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [field:SerializeField] public AnimationCurve MoveUpCurve { get; private set; }
     [field:SerializeField] public float MoveUpTime { get; private set; }
     [field:SerializeField] public GameObject AddPowerPoint { get; private set; }
+
     public float movePower = .0f;
 
     private bool onLeftButton = false;
@@ -37,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent<float> onHitEvent;
     public UnityEvent onDeadEvent;
+
+    private bool isLife = true;
+
 
 
     private void Awake()
@@ -72,7 +76,6 @@ public class PlayerController : MonoBehaviour
         {
             controller.SetCurrentSpeed(0f);
         }
-
     }
 
     public void SetFrezzeMode(bool isOn)
@@ -104,23 +107,31 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        FadeManager.Instance.FadeIn(1f, () =>
-        {
-            gameManager.GameOver();
-            onDeadEvent?.Invoke();
+        if (!isLife)
+            return;
 
-            FadeManager.Instance.FadeOut(1f);
+        isLife = false;
+
+        AudioManager.instance.PlaySFX("Hit02");
+
+        FadeManager.Instance.FadeIn(0.3f, () =>
+        {
+            onDeadEvent?.Invoke();
+            gameManager.GameOver();
+
+            FadeManager.Instance.FadeOut(1f, () =>
+            {
+                gameManager.LateGameOver();
+            });
         });
 
-        onDeadEvent?.Invoke();
-        AudioManager.instance.PlaySFX("Hit02");
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Plane"))
         {
-            Debug.Log("asd");
             Dead();
         }
 

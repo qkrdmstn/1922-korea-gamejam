@@ -7,8 +7,10 @@ public class TutorialStart : MonoBehaviour
 {
     public UnityEvent onStart;
 
-    private void Awake()
+    private void Update()
     {
+        if(Time.timeScale == 0)
+            Time.timeScale = 1;
     }
 
     public void OnStartProcess()
@@ -20,7 +22,9 @@ public class TutorialStart : MonoBehaviour
             onStart?.Invoke();
             SceneController.Instance.OnChangeScene("Game");
 
-            FadeManager.Instance.FadeOut(1f);
+            FadeManager.Instance.FadeOut(1f, () => { 
+            
+            });
         });
     }
 }

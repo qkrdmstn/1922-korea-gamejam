@@ -38,8 +38,12 @@ public class GameManager : MonoBehaviour
         socreBoard.SetActive(false);
 
         overUI.SetActive(true);
-        Time.timeScale = 0;
         scoreText = overUI.transform.GetChild(0).transform.Find("Score").GetComponent<TMP_Text>();
+    }
+
+    public void LateGameOver()
+    {
+        Time.timeScale = 0;
     }
 
     public void GameClear()
@@ -84,5 +88,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Init");
     }
+
 
 }

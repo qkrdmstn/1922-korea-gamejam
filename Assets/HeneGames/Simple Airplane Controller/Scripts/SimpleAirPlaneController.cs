@@ -123,6 +123,9 @@ namespace HeneGames.Airplane
         [SerializeField] private float takeoffLenght = 30f;
 
         public GameObject turboEffect;
+
+        public Transform bodyTrans;
+
         private void Start()
         {
             //Setup speeds
@@ -257,7 +260,7 @@ namespace HeneGames.Airplane
             //    return;
 
             //Rotate airplane by inputs
-            transform.Rotate(Vector3.forward * -inputH * currentRollSpeed * Time.deltaTime);
+            // transform.Rotate(Vector3.forward * -inputH * currentRollSpeed * Time.deltaTime);
             transform.Rotate(Vector3.right * inputV * currentPitchSpeed * Time.deltaTime);
 
             //Accelerate and deacclerate
