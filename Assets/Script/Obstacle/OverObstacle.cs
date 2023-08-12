@@ -6,7 +6,7 @@ public class OverObstacle : Obstacle
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("player"))
+        if (other.CompareTag("Player"))
         {
             GameManager.Instance.GameOver();
         }

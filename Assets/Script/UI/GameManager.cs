@@ -33,10 +33,11 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        Time.timeScale = 0;
+        
         overUI.SetActive(true);
+  
         overScore.text = score.ToString();
-       
+        Time.timeScale = 0;
     }
 
     public void GameClear()
