@@ -92,11 +92,13 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.SetCurrentSpeed(0f);
+        AudioManager.instance.PlaySFX("Hit01");
         onHitEvent?.Invoke(statusManager.GetStatus(StatusType.CURRENT_HP).GetValue());
     }
 
     private void Dead()
     {
         onDeadEvent?.Invoke();
+        AudioManager.instance.PlaySFX("Hit02");
     }
 }
