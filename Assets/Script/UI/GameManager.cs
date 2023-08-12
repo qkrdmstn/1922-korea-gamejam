@@ -27,7 +27,12 @@ public class GameManager : MonoBehaviour
     public ObstacleGenerator generator;
 
     // Start is called before the first frame update
-    
+    private void Awake()
+    {
+        AudioManager.instance.PlaySFX("Loop", true);
+        AudioManager.instance.PlayBGM("BGM");
+    }
+
 
     // Update is called once per frame
     void Update()
