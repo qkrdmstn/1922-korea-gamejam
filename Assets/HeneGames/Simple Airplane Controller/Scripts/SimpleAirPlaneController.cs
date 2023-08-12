@@ -122,6 +122,7 @@ namespace HeneGames.Airplane
         [Tooltip("How far must the plane be from the runway before it can be controlled again")]
         [SerializeField] private float takeoffLenght = 30f;
 
+        public GameObject turboEffect;
         private void Start()
         {
             //Setup speeds
@@ -285,6 +286,10 @@ namespace HeneGames.Airplane
                 //Effects
                 ChangeWingTrailEffectThickness(trailThickness);
 
+                // Effects 
+                turboEffect.SetActive(true);
+                turboEffect.GetComponent<ParticleSystem>().Play();
+
                 //Audio
                 currentEngineSoundPitch = turboSoundPitch;
             }
@@ -302,6 +307,10 @@ namespace HeneGames.Airplane
 
                 //Effects
                 ChangeWingTrailEffectThickness(0f);
+
+                // Effects
+                turboEffect.GetComponent<ParticleSystem>().Stop();
+                turboEffect.SetActive(false);
 
                 //Audio
                 currentEngineSoundPitch = defaultSoundPitch;
